@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{usuario.nombre | titlecase}} {{usuario.apellido | titlecase}}</mat-card-title>
+  </mat-card-header>
+<!--   <img class="cardimage" [src]="usuario.imagen" mat-card-image>
+ -->
+  <mat-card-content fxLayout="row">
+    <mat-divider></mat-divider>
+    <div fxLayoutGap="5px">
+
+      <h4>Email : {{usuario.email}}</h4>
+      <h4>DNI : {{usuario.dni}}</h4>
+      <h4>Rol : {{usuario.rol}}</h4>
+
+    </div>
+  </mat-card-content>
+
+  <!-- ACIONES  -->
+  <mat-card-actions>
+    <div
+    fxLayout="row"
+    fxLayoutAlign="center"
+    >
+      <button
+        fxFlex="50"
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/usuarios',usuario.email]">
+      Leer mas</button>
+      <button
+        fxFlex="50"
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/usuarios/modificar', usuario.email]">
+        <mat-icon>edit</mat-icon>
+      Modificar</button>
+    </div>
+
+  </mat-card-actions>
+
+</mat-card>

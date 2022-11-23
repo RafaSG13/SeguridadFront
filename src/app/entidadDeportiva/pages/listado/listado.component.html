@@ -1,0 +1,15 @@
+<h1>Listado de las Entidades Deportivas  Castilla La Mancha</h1>
+<mat-divider></mat-divider>
+
+<div fxLayout="row wrap"
+      fxLayoutAlign="center"
+      fxLayout.xs="column"
+      fxLayoutGap="20px">
+
+
+    <div fxFlex="30"
+      *ngFor="let entidad of entidades">
+          <app-entidad-tarjeta [entidad]="entidad"></app-entidad-tarjeta>
+    </div>
+
+</div>

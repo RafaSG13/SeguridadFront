@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{entidad.nombreEntidad | titlecase}}</mat-card-title>
+  </mat-card-header>
+  <img class="cardimage" [src]="entidad.imagen" mat-card-image>
+
+  <mat-card-content fxLayout="row">
+    <mat-divider></mat-divider>
+    <div fxLayoutGap="5px">
+
+      <h4>Nº Registro :</h4>
+      <h4>Provincia :</h4>
+      <h4>Localidad :</h4>
+    </div>
+
+    <div >
+      <h4>{{entidad.numeroRegistro}}</h4>
+      <h4>{{entidad.provincia}}</h4>
+      <h4>{{entidad.localidad}}</h4>
+    </div>
+<!--     <h4>Nº Registro : {{entidad.numeroRegistro}}</h4>
+    <mat-divider></mat-divider>
+    <h4 class="presentadorATT">Provincia : {{entidad.provincia}}</h4>
+    <mat-divider></mat-divider>
+    <h4 class="presentadorATT">Localidad : {{entidad.localidad}}</h4> -->
+  </mat-card-content>
+
+  <!-- ACIONES  -->
+  <mat-card-actions>
+    <div
+    fxLayout="row"
+    fxLayoutAlign="center"
+    >
+      <button
+        fxFlex="50"
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/entidades',entidad.numeroRegistro]">
+      Leer mas</button>
+      <button
+        fxFlex="50"
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/entidades/modificar', entidad.numeroRegistro]">
+        <mat-icon>edit</mat-icon>
+      Modificar</button>
+    </div>
+
+  </mat-card-actions>
+
+</mat-card>

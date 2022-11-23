@@ -1,0 +1,46 @@
+
+<mat-grid-list cols="1" *ngIf="!entidad; else divEntidad">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+<ng-template #divEntidad>
+
+  <div fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutGap="30px">
+
+        <div fxFlex="50">
+          <h1>Entidad con Nº <small> - {{ entidad.numeroRegistro }} </small> </h1>
+          <mat-divider></mat-divider>
+          <br>
+          <img class="imagenEntidad" [src]="entidad.imagen" alt="Imagen de la entidad">
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+
+        <div fxFlex="50">
+            <h2 class="nombreEntidad">{{ entidad.nombreEntidad }}</h2>
+            <mat-divider></mat-divider>
+
+            <mat-list>
+              <mat-list-item> Provincia : {{ entidad.provincia }} </mat-list-item>
+              <mat-list-item> Localidad : {{ entidad.localidad }} </mat-list-item>
+              <mat-list-item> Tipo de Entidad : {{ entidad.tipo }} </mat-list-item>
+
+            </mat-list>
+
+            <br>
+            <button mat-raised-button
+                    color="warn"
+                    (click)="regresar()">
+                Regresar
+            </button>
+        </div>
+
+
+  </div>
+
+</ng-template>

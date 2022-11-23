@@ -1,0 +1,80 @@
+
+<h1>
+  {{ ( usuario.nombre )? 'Modificar' : 'Nueva' }}
+  Usuario
+  <small>{{ usuario.email }}</small>
+</h1>
+
+<div fxLayout="row"
+   fxLayoutGap="40px"
+   fxLayout.xs="column">
+
+  <div fxFlex="50" fxLayout="column">
+
+      <div fxLayout="row"
+           fxLayout.xs="column"
+           fxLayoutGap="20px">
+          <mat-form-field fxFlex="100" fxLayout.xs="column" >
+              <mat-label>Nombre</mat-label>
+              <input matInput
+                     type="text"
+                     [(ngModel)]="usuario.nombre"
+                     required>
+          </mat-form-field>
+
+
+          <mat-form-field fxFlex="100">
+              <mat-label>Apellidos</mat-label>
+              <input matInput
+                     type="text"
+                     [(ngModel)]="usuario.apellido"
+                     required>
+          </mat-form-field>
+      </div>
+
+
+      <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input matInput
+                 type="text"
+                 [(ngModel)]="usuario.password"
+                 required>
+      </mat-form-field>
+
+<!--       <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <mat-select [(ngModel)]="entidad.tipo">
+              <mat-option *ngFor="let tipo of tipos"
+                          [value]="tipo.idTipo">
+                  {{ tipo.valor }}
+              </mat-option>
+          </mat-select>
+      </mat-form-field> -->
+
+      <br>
+
+
+      <div fxLayout fxLayoutGap="20px">
+          <button mat-raised-button
+                  color="primary"
+                  (click)="guardar()">
+              <mat-icon>edit</mat-icon>
+              {{ ( usuario.nombre )? 'Modificar' : 'Crear' }}
+          </button>
+
+          <span class="spacer"></span>
+
+          <button *ngIf="usuario.email"
+                  mat-raised-button
+                  (click)="borrar()"
+                  color="warn">
+              <mat-icon>remove</mat-icon>
+              Borrar
+          </button>
+      </div>
+      <!-- TODO:Tengo que implementar el dar a elegir el ROL en caso de crear, o modificar -->
+      <!-- TODO:Tengo que ver porque siempre detecta que esta creando uno nuevo -->
+  </div>
+
+
+</div>

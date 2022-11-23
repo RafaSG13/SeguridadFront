@@ -1,0 +1,15 @@
+<h1>Listado de Usuarios</h1>
+<mat-divider></mat-divider>
+
+<div fxLayout="row wrap"
+      fxLayoutAlign="center"
+      fxLayout.xs="column"
+      fxLayoutGap="20px">
+
+
+    <div fxFlex="30"
+      *ngFor="let usuario of usuarios">
+          <app-carta-usuario [usuario]="usuario"></app-carta-usuario>
+    </div>
+
+</div>

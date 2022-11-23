@@ -1,0 +1,57 @@
+
+
+<div fxLayout="column">
+  <div>
+      <h1>Buscador de Entidades Deportivas</h1>
+      <mat-divider></mat-divider>
+  </div>
+
+  <div fxLayout="column">
+
+      <mat-form-field>
+          <input type="text"
+                 placeholder="Introduzca el Nombre de una Entidad Deportiva"
+                 aria-label="Number"
+                 matInput
+                 [(ngModel)]="termino"
+                 [matAutocomplete]="auto"
+                 (input)="buscando()">
+
+          <mat-autocomplete autoActiveFirstOption
+                            #auto="matAutocomplete"
+                            (optionSelected)="opcionSeleccionada( $event )">
+
+            <mat-option *ngFor="let entidad of entidades" [value]="entidad">
+              {{ entidad.nombreEntidad }}
+            </mat-option>
+
+            <mat-option value="" *ngIf="entidades.length === 0 && termino.trim().length > 0">
+              No se encontró nada con el término {{ termino }}
+            </mat-option>
+
+
+          </mat-autocomplete>
+
+
+      </mat-form-field>
+
+
+
+  </div>
+  <ng-template [ngIf]="!!entidadSeleccionada">
+
+    <div fxLayout="row"
+    fxLayoutAlign="center">
+      <app-entidad-tarjeta fxFlex="50" [entidad]="entidadSeleccionada"></app-entidad-tarjeta>
+    </div>
+
+
+
+
+  </ng-template>
+
+
+</div>
+
+
+
