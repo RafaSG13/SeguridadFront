@@ -6,6 +6,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { AnadirComponent } from './pages/anadir/anadir.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { VerEntidadComponent } from './pages/ver-entidad/ver-entidad.component';
+import { ModificarComponent } from './pages/modificar/modificar.component';
 
 
 
@@ -16,10 +17,10 @@ const rutas: Routes = [
     children: [
       { path: 'listado', component: ListadoComponent },
       { path: 'anadir', component: AnadirComponent },
-      { path: 'modificar/:numeroRegistro', component: AnadirComponent },
+      { path: 'modificar/:numeroRegistro', component: ModificarComponent },
       { path: 'buscar', component: BuscarComponent },
       { path: ':numeroRegistro', component: VerEntidadComponent },
-      { path: '**', redirectTo: 'listado' }
+      { path: '**', redirectTo: '' }
     ]
   }
 ];

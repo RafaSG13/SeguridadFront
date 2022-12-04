@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { EntidadDeportiva } from '../../interfaces/entidadDeportiva';
 import { EntidadesService } from '../../services/entidades.service';
+import { UsuariosService } from '../../../auth/services/usuarios.service';
 
 @Component({
   selector: 'app-anadir',
@@ -25,8 +26,12 @@ export class AnadirComponent implements OnInit {
   }
   tipos = [
     {
-      idTipo: "club",
+      idTipo: "Club",
       valor: "Club"
+    },
+    {
+      idTipo: "Federacion",
+      valor: "Federacion"
     }
   ];
 
@@ -34,6 +39,7 @@ export class AnadirComponent implements OnInit {
 
   constructor(
     private entidadService: EntidadesService,
+    private userService : UsuariosService,
     private router:Router,
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
@@ -41,60 +47,29 @@ export class AnadirComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
-    if( !this.router.url.includes('modificar') ) {
-      return;
-    }
-
-    this.activatedRoute.params
-      .pipe(
-        switchMap( ({numeroRegistro}) => this.entidadService.getEntidadPorNumeroRegistro(numeroRegistro) )
-      )
-      .subscribe( entidad => this.entidad = entidad );
-
-      console.log(this.entidad);
   }
 
-  guardar(){
+
+  get canCreate() : boolean{
+    if(this.userService.usuarioLogged?.rol=="Usuario" || this.userService.usuarioLogged?.rol=="Superadministrador")
+      return true;
+    else
+      return false;
+  }
+
+  crear(){
     if( this.entidad.nombreEntidad.trim().length === 0  ) {
       return;
     }
 
-    if ( this.entidad.numeroRegistro  !== 0) {
-      // Actualizar
-      this.entidadService.actualizarEntidad( this.entidad )
-        .subscribe( () => this.mostrarSnakbar('Registro actualizado'));
-
-    } else {
       // Crear
+      this.entidad.numeroRegistro = 99999;
       this.entidadService.agregarEntidad( this.entidad )
         .subscribe(entidad => {
           this.router.navigate(['/entidades/modificar', entidad.numeroRegistro ]);  //COSA RARA DE RUTAS ECHAR UN OJO
           this.mostrarSnakbar('Registro creado');
         })
-    }
-  }
 
-
-  borrar() {
-
-    const dialog = this.dialog.open( ConfirmarComponent, {
-      width: '250px',
-      data: this.entidad
-    });
-
-    dialog.afterClosed().subscribe(
-      (result) => {
-
-        if( result ) {
-          this.entidadService.borrarEntidad( this.entidad.numeroRegistro! )
-            .subscribe( resp => {
-              this.router.navigate(['/entidades']);
-            });
-        }
-
-      }
-    )
   }
 
   mostrarSnakbar( mensaje: string ) {

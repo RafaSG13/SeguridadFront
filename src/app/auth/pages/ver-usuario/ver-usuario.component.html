@@ -1,1 +1,46 @@
-<p>ver-usuario works!</p>
+
+<mat-grid-list cols="1" *ngIf="!usuario; else divUsuario">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+<ng-template #divUsuario>
+
+  <div fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutGap="30px">
+
+        <div fxFlex="50">
+          <h1>Entidad con Nº <small> - {{ usuario.email }} </small> </h1>
+          <mat-divider></mat-divider>
+          <br>
+<!--           <img class="imagenEntidad" [src]="divUsuario.imagen" alt="Imagen de la entidad">
+ -->        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+
+        <div fxFlex="50">
+            <h2>{{ usuario.nombre}}</h2>
+            <mat-divider></mat-divider>
+
+            <mat-list>
+              <mat-list-item> Apellido : {{ usuario.apellido }} </mat-list-item>
+              <mat-list-item> Dni : {{  dniPorRol }} </mat-list-item>
+              <mat-list-item> Rol : {{ usuario.rol }} </mat-list-item>
+
+            </mat-list>
+
+            <br>
+            <button mat-raised-button
+                    color="warn"
+                    (click)="regresar()">
+                Regresar
+            </button>
+        </div>
+
+
+  </div>
+
+</ng-template>

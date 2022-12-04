@@ -1,7 +1,7 @@
 
 <h1>
-  Nueva  Entidad Deportiva
-  <small>{{ entidad.nombreEntidad }}</small>
+  Modificar Entidad
+  <small>{{ entidad.numeroRegistro }}</small>
 </h1>
 
 <div fxLayout="row"
@@ -13,8 +13,9 @@
       <div fxLayout="row"
            fxLayout.xs="column"
            fxLayoutGap="20px">
+
           <mat-form-field fxFlex="100" fxLayout.xs="column" >
-              <mat-label>Nombre Entidad Deportiva</mat-label>
+              <mat-label>Nombre Entidad</mat-label>
               <input matInput
                      type="text"
                      [(ngModel)]="entidad.nombreEntidad"
@@ -23,20 +24,20 @@
 
 
           <mat-form-field fxFlex="100">
-              <mat-label>Provincia</mat-label>
+              <mat-label>Localidad</mat-label>
               <input matInput
                      type="text"
-                     [(ngModel)]="entidad.provincia"
+                     [(ngModel)]="entidad.localidad"
                      required>
           </mat-form-field>
       </div>
 
 
       <mat-form-field>
-          <mat-label>Localidad</mat-label>
+          <mat-label>Provincia</mat-label>
           <input matInput
                  type="text"
-                 [(ngModel)]="entidad.localidad"
+                 [(ngModel)]="entidad.provincia"
                  required>
       </mat-form-field>
 
@@ -49,32 +50,28 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
-          <mat-label>Foto Url</mat-label>
-          <input matInput
-                 type="url"
-                 [(ngModel)]="entidad.imagen">
-      </mat-form-field>
-
       <br>
 
 
       <div fxLayout fxLayoutGap="20px">
-          <button *ngIf="canCreate"
-                  mat-raised-button
+          <button mat-raised-button
                   color="primary"
-                  (click)="crear()">
+                  (click)="modificar()">
               <mat-icon>edit</mat-icon>
-              Crear
+              Modificar
           </button>
 
+          <span class="spacer"></span>
+
+          <button *ngIf="entidad.numeroRegistro && canDelete"
+                  mat-raised-button
+                  (click)="borrar()"
+                  color="warn">
+              <mat-icon>remove</mat-icon>
+              Borrar
+          </button>
       </div>
-
-
   </div>
 
-  <div fxFlex="50">
-      <img [src]="entidad.imagen">
-  </div>
 
 </div>

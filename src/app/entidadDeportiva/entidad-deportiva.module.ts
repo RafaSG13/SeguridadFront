@@ -12,6 +12,7 @@ import { AnadirComponent } from './pages/anadir/anadir.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { VerEntidadComponent } from './pages/ver-entidad/ver-entidad.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
+import { ModificarComponent } from './pages/modificar/modificar.component';
 
 
 
@@ -19,13 +20,13 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 @NgModule({
   declarations: [
-    HomeComponent,
     ListadoComponent,
     EntidadTarjetaComponent,
     AnadirComponent,
     BuscarComponent,
     VerEntidadComponent,
     ConfirmarComponent,
+    ModificarComponent,
   ],
   imports: [
     CommonModule,

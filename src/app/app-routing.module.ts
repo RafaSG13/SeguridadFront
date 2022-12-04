@@ -1,26 +1,33 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanLoad } from '@angular/router';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 
 const routes: Routes = [
   {
     path: 'usuarios',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
+    canActivate:[AuthGuard],
+    canLoad:[AuthGuard]
+
   },
   {
     path: 'entidades',
-    loadChildren: () => import('./entidadDeportiva/entidad-deportiva.module').then( m => m.EntidadDeportivaModule )
+    loadChildren: () => import('./entidadDeportiva/entidad-deportiva.module').then( m => m.EntidadDeportivaModule ),
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
-    path: '404',
-    component: ErrorPageComponent
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginModule ),
   },
   {
     path: '**',
-    // component: ErrorPageComponent
-    redirectTo: '404'
-  }
+    redirectTo:'login'
+  },
+
+
 ]
 
 

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './pages/login/login.component';
-import { RegistroComponent } from './pages/registro/registro.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ListadoUsuariosComponent } from './pages/listado-usuarios/listado-usuarios.component';
 import { CartaUsuarioComponent } from './components/carta-usuario/carta-usuario.component';
@@ -11,25 +9,26 @@ import { VerUsuarioComponent } from './pages/ver-usuario/ver-usuario.component';
 import { AnadirUsuarioComponent } from './pages/anadir-usuario/anadir-usuario.component';
 import { BuscarUsuarioComponent } from './pages/buscar-usuario/buscar-usuario.component';
 import { FormsModule } from '@angular/forms';
+import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegistroComponent,
     ListadoUsuariosComponent,
     CartaUsuarioComponent,
     ConfirmarComponent,
     VerUsuarioComponent,
     AnadirUsuarioComponent,
-    BuscarUsuarioComponent
+    BuscarUsuarioComponent,
+    ModificarUsuarioComponent,
+
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class AuthModule { }

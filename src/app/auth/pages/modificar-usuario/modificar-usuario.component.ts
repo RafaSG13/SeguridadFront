@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
-  selector: 'app-anadir-usuario',
-  templateUrl: './anadir-usuario.component.html',
-  styleUrls: ['./anadir-usuario.component.css']
+  selector: 'app-modificar-usuario',
+  templateUrl: './modificar-usuario.component.html',
+  styleUrls: ['./modificar-usuario.component.css']
 })
-export class AnadirUsuarioComponent implements OnInit {
+export class ModificarUsuarioComponent implements OnInit {
 
   usuario = {
     email : "",
@@ -36,23 +36,34 @@ export class AnadirUsuarioComponent implements OnInit {
   constructor(
     private usuarioService : UsuariosService,
     private router:Router,
+    private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
+    this.activatedRoute.params
+    .pipe(
+      switchMap( ({email}) => this.usuarioService.getUsuarioPorEmail(email) )
+    )
+    .subscribe( usuario => this.usuario = usuario );
+
   }
 
-  crear(){
-    if( this.usuario.nombre.trim().length === 0  ) {
-      return;
+  get canDelete():boolean{
+
+    if(this.usuarioService.usuarioLogged?.rol == "Superadministrador"){
+      return true;
     }
-    // Crear
-    this.usuarioService.agregarUsuario( this.usuario )
-      .subscribe(usuario => {
-        this.router.navigate(['/usuarios/modificar', usuario.email ]);  //COSA RARA DE RUTAS ECHAR UN OJO
-        this.mostrarSnakbar('Registro creado');
-      })
+
+    else{
+      return false;
+    }
+  }
+
+  modificar(){
+    this.usuarioService.actualizarUsuario( this.usuario )
+    .subscribe( () => this.mostrarSnakbar('Registro actualizado'));
 
   }
 
@@ -73,16 +84,16 @@ export class AnadirUsuarioComponent implements OnInit {
               this.router.navigate(['/entidades']);
             });
         }
-
       }
     )
   }
+
 
   mostrarSnakbar( mensaje: string ) {
 
     this.snackBar.open( mensaje, 'ok!', {
       duration: 2500
     });
-
   }
+
 }

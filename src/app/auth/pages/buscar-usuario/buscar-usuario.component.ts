@@ -1,3 +1,4 @@
+import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Usuario } from '../../interfaces/usuario';
@@ -20,7 +21,7 @@ export class BuscarUsuarioComponent implements OnInit {
 
   buscando() {
 
-    this.usuarioService.getSugerencias( this.termino.trim() )
+    this.usuarioService.getSugerencias( this.termino.toLowerCase().trim() )
       .subscribe( usuarios => this.usuarios = usuarios );
 
   }

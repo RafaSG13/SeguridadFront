@@ -1,19 +1,12 @@
 
 <h1>
-Nuevo Usuario
+  Modificar Usuario
+  <small>{{ usuario.email }}</small>
 </h1>
 
 <div fxLayout="row"
    fxLayoutGap="40px"
    fxLayout.xs="column">
-
-  <mat-form-field fxFlex="100" fxLayout.xs="column" >
-    <mat-label>Email</mat-label>
-    <input matInput
-           type="text"
-           [(ngModel)]="usuario.email"
-           required>
-  </mat-form-field>
 
   <div fxFlex="50" fxLayout="column">
 
@@ -39,13 +32,15 @@ Nuevo Usuario
           </mat-form-field>
       </div>
 
+
       <mat-form-field>
         <mat-label>DNI</mat-label>
         <input matInput
                type="text"
                [(ngModel)]="usuario.dni"
                required>
-      </mat-form-field>
+    </mat-form-field>
+
 
       <mat-form-field>
           <mat-label>Contraseña</mat-label>
@@ -54,6 +49,7 @@ Nuevo Usuario
                  [(ngModel)]="usuario.password"
                  required>
       </mat-form-field>
+
 
       <mat-form-field>
         <mat-label>Rol</mat-label>
@@ -70,12 +66,22 @@ Nuevo Usuario
       <div fxLayout fxLayoutGap="20px">
           <button mat-raised-button
                   color="primary"
-                  (click)="crear()">
-              <mat-icon>add</mat-icon>
-              Crear
+                  (click)="modificar()">
+              <mat-icon>edit</mat-icon>
+              Modificar
+          </button>
+
+          <span class="spacer"></span>
+
+          <button *ngIf="usuario.email && canDelete"
+                  mat-raised-button
+                  (click)="borrar()"
+                  color="warn">
+              <mat-icon>remove</mat-icon>
+              Borrar
           </button>
       </div>
-  </div>
+¡  </div>
 
 
 </div>
