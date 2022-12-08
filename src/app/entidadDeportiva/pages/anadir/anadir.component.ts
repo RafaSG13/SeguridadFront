@@ -10,8 +10,7 @@ import { UsuariosService } from '../../../auth/services/usuarios.service';
 
 @Component({
   selector: 'app-anadir',
-  templateUrl: './anadir.component.html',
-  styleUrls: ['./anadir.component.css']
+  templateUrl: './anadir.component.html'
 })
 export class AnadirComponent implements OnInit {
 

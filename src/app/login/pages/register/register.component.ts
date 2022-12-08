@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/auth/interfaces/usuario';
 /* import Swal from 'sweetalert2';
  */
 
@@ -16,8 +17,10 @@ export class RegisterComponent {
 
   miFormulario: FormGroup = this.fb.group({
     name:     ['', [ Validators.required ]],
-    email:    ['', [ Validators.required, Validators.email ]],
-    password: ['', [ Validators.required, Validators.minLength(6) ]],
+    apellido: ['', [ Validators.required ]],
+    dni: ['', [ Validators.required]],
+    email:    ['', [ Validators.required]],
+    password: ['', [ Validators.required]],
   });
 
   constructor( private fb: FormBuilder,
@@ -26,7 +29,19 @@ export class RegisterComponent {
 
 
   registro() {
-    const { name, email, password } = this.miFormulario.value;
+    const { name, apellido, dni, email, password } = this.miFormulario.value;
+    let usuario : Usuario = {
+      email: email,
+      dni: dni,
+      nombre: name,
+      apellido: apellido,
+      password: password,
+      rol : 'Usuario'
+    }
+    this.usuarioService.agregarUsuario(usuario).subscribe( resutl =>{
+      console.log(resutl);
+      this.router.navigate(['/login/login']);
+    })
   }
 
 

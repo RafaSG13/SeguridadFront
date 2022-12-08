@@ -5,9 +5,6 @@ import { EntidadDeportiva } from '../../interfaces/entidadDeportiva';
 @Component({
   selector: 'app-confirmar',
   templateUrl: './confirmar.component.html',
-  styles:[
-
-  ]
 
 })
 export class ConfirmarComponent implements OnInit {

@@ -8,8 +8,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-modificar-usuario',
-  templateUrl: './modificar-usuario.component.html',
-  styleUrls: ['./modificar-usuario.component.css']
+  templateUrl: './modificar-usuario.component.html'
 })
 export class ModificarUsuarioComponent implements OnInit {
 

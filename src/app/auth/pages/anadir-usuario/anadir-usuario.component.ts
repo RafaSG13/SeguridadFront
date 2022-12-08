@@ -9,7 +9,11 @@ import { UsuariosService } from '../../services/usuarios.service';
 @Component({
   selector: 'app-anadir-usuario',
   templateUrl: './anadir-usuario.component.html',
-  styleUrls: ['./anadir-usuario.component.css']
+  styles:[`
+    mat-form-field{
+      margin: 5px;
+    }
+    `]
 })
 export class AnadirUsuarioComponent implements OnInit {
 

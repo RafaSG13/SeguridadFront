@@ -6,8 +6,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-buscar-usuario',
-  templateUrl: './buscar-usuario.component.html',
-  styleUrls: ['./buscar-usuario.component.css']
+  templateUrl: './buscar-usuario.component.html'
 })
 export class BuscarUsuarioComponent implements OnInit {
 

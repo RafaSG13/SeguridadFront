@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuariosService {
+
   private baseUrl: string = environment.baseUrlBackend;
   public usuarioLogged :Usuario | undefined
 
@@ -40,6 +41,11 @@ export class UsuariosService {
 
   }
 
+
+  changePass( usuario: Usuario ): Observable<Usuario> {
+    return this.http.post<Usuario>(`${ this.baseUrl }/usuarios/cambiarContrasena`, usuario );
+  }
+
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${ this.baseUrl }/usuarios/verUsuarios`);
   }
@@ -55,7 +61,6 @@ export class UsuariosService {
   getUsuarioPorNombre(nombre: string){
     return this.http.get<Usuario>(`${ this.baseUrl }/usuarios/mostrarUsuarioPorNombre?nombre=${ nombre }`);
   }
-
 
   agregarUsuario( usuario: Usuario ): Observable<Usuario> {
     return this.http.post<Usuario>(`${ this.baseUrl }/usuarios/crearUsuario`, usuario );
@@ -76,11 +81,4 @@ export class UsuariosService {
   getLogin(usuario : Usuario){
     return this.http.post<Usuario>(`${ this.baseUrl }/usuarios/login`,usuario);
   }
-
-  mostrarDniEnFuncionDelRol(usuario: Usuario){
-
-    return "";
-  }
-
-
 }

@@ -26,7 +26,6 @@ export class AuthGuard implements CanLoad , CanActivate, CanActivateChild{
 
     if(localStorage.getItem('usuarioLogged')!= null){
       return true;
-
     }
 
     return false;

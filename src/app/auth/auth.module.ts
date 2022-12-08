@@ -10,6 +10,7 @@ import { AnadirUsuarioComponent } from './pages/anadir-usuario/anadir-usuario.co
 import { BuscarUsuarioComponent } from './pages/buscar-usuario/buscar-usuario.component';
 import { FormsModule } from '@angular/forms';
 import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-usuario.component';
+import { CambiarPasswordComponent } from './pages/cambiar-password/cambiar-password.component';
 
 
 
@@ -22,6 +23,7 @@ import { ModificarUsuarioComponent } from './pages/modificar-usuario/modificar-u
     AnadirUsuarioComponent,
     BuscarUsuarioComponent,
     ModificarUsuarioComponent,
+    CambiarPasswordComponent,
 
   ],
   imports: [
