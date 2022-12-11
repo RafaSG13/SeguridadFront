@@ -8,7 +8,7 @@ import { UsuariosService } from '../../auth/services/usuarios.service';
   styles: [`
   .container {
     margin: 10px;
-  },
+  }
   .usuarioLogueado{
     margin-right: 10px;
   }

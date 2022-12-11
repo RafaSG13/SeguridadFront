@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/seguridad_2022_2023",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

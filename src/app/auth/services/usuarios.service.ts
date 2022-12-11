@@ -50,16 +50,8 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(`${ this.baseUrl }/usuarios/verUsuarios`);
   }
 
-  getUsuarioPorDNI(dni: string){
-    return this.http.get<Usuario>(`${ this.baseUrl }/usuarios/mostrarUsuarioPorDni?dni=${ dni }`);
-  }
-
   getUsuarioPorEmail(email: string){
     return this.http.get<Usuario>(`${ this.baseUrl }/usuarios/mostrarUsuarioPorEmail?email=${ email }`);
-  }
-
-  getUsuarioPorNombre(nombre: string){
-    return this.http.get<Usuario>(`${ this.baseUrl }/usuarios/mostrarUsuarioPorNombre?nombre=${ nombre }`);
   }
 
   agregarUsuario( usuario: Usuario ): Observable<Usuario> {
@@ -67,7 +59,7 @@ export class UsuariosService {
   }
 
   actualizarUsuario(usuario: Usuario ): Observable<Usuario> {
-    return this.http.put<Usuario>(`${ this.baseUrl }/usuarios/modificarUsuario`, usuario );
+    return this.http.post<Usuario>(`${ this.baseUrl }/usuarios/modificarUsuario`, usuario );
   }
 
   borrarUsuario( email: string ): Observable<any> {

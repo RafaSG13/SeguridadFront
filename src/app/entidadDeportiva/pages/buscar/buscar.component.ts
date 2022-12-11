@@ -12,7 +12,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
       width: 200px;
       height: 200px;
       border-radius: 10px;
-    },
+    }
     app-entidad-tarjeta{
       height: 400px;
       width: 200px;
