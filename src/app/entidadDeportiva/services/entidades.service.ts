@@ -24,7 +24,7 @@ export class EntidadesService {
   }
 
   getSugerencias( termino: string ): Observable<EntidadDeportiva[]> {
-    return this.http.get<EntidadDeportiva[]>(`${ this.baseUrl }/entidades/buscarEntidadPorNombre?nombreEntidad=${ termino }`);
+    return this.http.get<EntidadDeportiva[]>(`${ this.baseUrl }/entidades/buscarEntidadPorNombre?nombreEntidad=${ termino.toUpperCase() }`);
   }
 
   agregarEntidad( entidad: EntidadDeportiva ): Observable<EntidadDeportiva> {
