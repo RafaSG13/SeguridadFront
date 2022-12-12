@@ -23,18 +23,6 @@ export class EntidadesService {
     return this.http.get<EntidadDeportiva>(`${ this.baseUrl }/entidades/mostrarEntidadPorNumeroRegistro?numeroRegistro=${ numeroRegistro }`);
   }
 
-  getEntidadesPorNombreEntidad(nombreEntidad: String){
-    return this.http.get<EntidadDeportiva[]>(`${ this.baseUrl }/entidades/mostrarEntidadesPorNombre/${ nombreEntidad }`);
-  }
-
-  getEntidadesPorLocalidad(localidad: String){
-    return this.http.get<EntidadDeportiva[]>(`${ this.baseUrl }/entidades/mostrarEntidadesPorLocalidad/${ localidad }`);
-  }
-
-  getEntidadesPorProvincia(provincia: String){
-    return this.http.get<EntidadDeportiva[]>(`${ this.baseUrl }/entidades/mostrarEntidadesPorProvincia/${ provincia }`);
-  }
-
   getSugerencias( termino: string ): Observable<EntidadDeportiva[]> {
     return this.http.get<EntidadDeportiva[]>(`${ this.baseUrl }/entidades/buscarEntidadPorNombre?nombreEntidad=${ termino }`);
   }
@@ -44,7 +32,7 @@ export class EntidadesService {
   }
 
   actualizarEntidad( entidad: EntidadDeportiva ): Observable<EntidadDeportiva> {
-    return this.http.put<EntidadDeportiva>(`${ this.baseUrl }/entidades/modificarEntidad`, entidad );
+    return this.http.post<EntidadDeportiva>(`${ this.baseUrl }/entidades/modificarEntidad`, entidad );
   }
 
   borrarEntidad( numeroRegistro: Number ): Observable<any> {

@@ -54,8 +54,7 @@ export class AnadirUsuarioComponent implements OnInit {
     // Crear
     this.usuarioService.agregarUsuario( this.usuario )
       .subscribe(usuario => {
-        this.router.navigate(['/usuarios/modificar', usuario.email ]);  //COSA RARA DE RUTAS ECHAR UN OJO
-        this.mostrarSnakbar('Registro creado');
+        this.mostrarSnakbar('Registro creado '+ usuario.email);
       })
 
   }
