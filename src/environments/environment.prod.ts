@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrlBackend: 'http://localhost:8082'
+  baseUrlBackend: 'https://seguridadback.herokuapp.com'
 };
