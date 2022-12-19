@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-/* import Swal from 'sweetalert2'; */
-
 import { Usuario } from '../../../auth/interfaces/usuario';
 import { UsuariosService } from '../../../auth/services/usuarios.service';
 
@@ -11,6 +9,12 @@ import { UsuariosService } from '../../../auth/services/usuarios.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: [
+    `
+    .error{
+      color:red;
+      display:block ;
+    }
+    `
   ]
 })
 export class LoginComponent  implements OnInit{
@@ -25,6 +29,7 @@ export class LoginComponent  implements OnInit{
 
   }
 
+  error : boolean = false;
   resultado: Usuario | undefined;
 
   miFormulario: FormGroup = this.fb.group({
@@ -50,7 +55,7 @@ export class LoginComponent  implements OnInit{
     this.usuarioService.getLogin(this.usuario).subscribe(result =>{
         this.resultado = result;
         if(this.resultado !== null){
-
+          this.error = false;
           this.usuarioService.usuarioLogged = this.resultado;
           localStorage.setItem('usuarioLogged',this.resultado.email);
 
@@ -61,7 +66,7 @@ export class LoginComponent  implements OnInit{
 
         }
         else{
-          console.log("ERROR")
+          this.error = true;
         }
     });
 
