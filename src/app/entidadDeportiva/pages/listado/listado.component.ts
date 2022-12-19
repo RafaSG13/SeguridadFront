@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EntidadesService } from '../../services/entidades.service';
 import { EntidadDeportiva } from '../../interfaces/entidadDeportiva';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-listado',

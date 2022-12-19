@@ -1,9 +1,8 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
-import { PaisService } from '../../../../../../ng_curso/paisesApp/src/app/pais/services/pais.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,7 @@ export class UsuariosService {
 
   private baseUrl: string = environment.baseUrlBackend;
   public usuarioLogged :Usuario | undefined
+  minPassLength : Number = 6;
 
   constructor(private http: HttpClient) { }
 
@@ -77,18 +77,17 @@ export class UsuariosService {
 
   comprobarPass(pwd : string): boolean{
     let valid : boolean = true;
-    if(pwd.toLocaleLowerCase() === pwd){
+    if(pwd.length < this.minPassLength)
       return false;
-    }
-    if(pwd.toUpperCase() === pwd){
+    if(pwd.toLocaleLowerCase() === pwd)
       return false;
-    }
-    if(/\d/.test(pwd) === false){
+    if(pwd.toUpperCase() === pwd)
       return false;
-    }
-    if(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pwd) === false){
+    if(/\d/.test(pwd) === false)
       return false;
-    }
+    if(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pwd) === false)
+      return false;
+
 
       return valid;
   }

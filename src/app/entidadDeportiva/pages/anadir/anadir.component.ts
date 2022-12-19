@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
-import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { EntidadDeportiva } from '../../interfaces/entidadDeportiva';
 import { EntidadesService } from '../../services/entidades.service';
 import { UsuariosService } from '../../../auth/services/usuarios.service';

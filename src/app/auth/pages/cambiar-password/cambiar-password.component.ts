@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
