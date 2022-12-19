@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
+import { PaisService } from '../../../../../../ng_curso/paisesApp/src/app/pais/services/pais.service';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,27 @@ export class UsuariosService {
 
   getLogin(usuario : Usuario){
     return this.http.post<Usuario>(`${ this.baseUrl }/usuarios/login`,usuario);
+  }
+
+  comprobarPass(pwd : string): boolean{
+    let valid : boolean = true;
+    if(pwd.toLocaleLowerCase() === pwd){
+      console.log("No hay mayusc");
+      valid = false;
+    }
+    if(pwd.toUpperCase() === pwd){
+      console.log("No hay minusc");
+      valid = false;
+    }
+    if(!/\d/.test(pwd)){
+      console.log("No hay digitos");
+      valid = false;
+    }
+    if(!/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pwd)){
+      console.log("No hay caracteres Especiales");
+      valid = false;
+    }
+
+      return valid;
   }
 }

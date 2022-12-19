@@ -13,6 +13,10 @@ import { UsuariosService } from '../../services/usuarios.service';
     mat-form-field{
       margin: 5px;
     }
+    .error{
+      color:red;
+      display:block ;
+    }
     `]
 })
 export class AnadirUsuarioComponent implements OnInit {
@@ -26,16 +30,11 @@ export class AnadirUsuarioComponent implements OnInit {
     password: ""
   }
 
-  roles = [
-    {
-      idTipo: "Usuario",
-      valor: "Usuario"
-    },
-    {
-      idTipo: "Administrador",
-      valor: "Administrador"
-    }
-  ];
+  roles = [{idTipo: "Usuario",valor: "Usuario"},{idTipo: "Administrador",valor: "Administrador"}];
+
+  //Para indicar que la contraseña esta mal
+  errorPass : boolean = false;
+
 
   constructor(
     private usuarioService : UsuariosService,
@@ -52,6 +51,10 @@ export class AnadirUsuarioComponent implements OnInit {
       return;
     }
     // Crear
+    if(!this.usuarioService.comprobarPass(this.usuario.password)){
+      this.errorPass = true;
+      return;
+    }
     this.usuarioService.agregarUsuario( this.usuario )
       .subscribe(usuario => {
         this.mostrarSnakbar('Registro creado '+ usuario.email);
@@ -73,7 +76,7 @@ export class AnadirUsuarioComponent implements OnInit {
         if( result ) {
           this.usuarioService.borrarUsuario( this.usuario.email! )
             .subscribe( resp => {
-              this.router.navigate(['/entidades']);
+              this.router.navigate(['/usuarios']);
             });
         }
 

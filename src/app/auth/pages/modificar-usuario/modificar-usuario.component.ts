@@ -8,7 +8,15 @@ import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-modificar-usuario',
-  templateUrl: './modificar-usuario.component.html'
+  templateUrl: './modificar-usuario.component.html',
+  styles: [
+    `
+    .error{
+      color:red;
+      display:block ;
+    }
+    `
+  ]
 })
 export class ModificarUsuarioComponent implements OnInit {
 
@@ -21,16 +29,9 @@ export class ModificarUsuarioComponent implements OnInit {
     password: ""
   }
 
-  roles = [
-    {
-      idTipo: "Usuario",
-      valor: "Usuario"
-    },
-    {
-      idTipo: "Administrador",
-      valor: "Administrador"
-    }
-  ];
+  roles = [{idTipo: "Usuario",valor: "Usuario"},{idTipo: "Administrador",valor: "Administrador"}];
+
+  errorPass : boolean = false;
 
   constructor(
     private usuarioService : UsuariosService,
@@ -61,6 +62,11 @@ export class ModificarUsuarioComponent implements OnInit {
   }
 
   modificar(){
+
+    if(!this.usuarioService.comprobarPass(this.usuario.password)){
+      this.errorPass = true;
+      return;
+    }
     this.usuarioService.actualizarUsuario( this.usuario )
     .subscribe( () => this.mostrarSnakbar('Registro actualizado'));
 
@@ -80,7 +86,7 @@ export class ModificarUsuarioComponent implements OnInit {
         if( result ) {
           this.usuarioService.borrarUsuario( this.usuario.email! )
             .subscribe( resp => {
-              this.router.navigate(['/entidades']);
+              this.router.navigate(['/usuarios']);
             });
         }
       }

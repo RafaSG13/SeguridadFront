@@ -11,6 +11,12 @@ import { UsuariosService } from '../../../auth/services/usuarios.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styles: [
+    `
+    .error{
+      color:red;
+      display:block ;
+    }
+    `
   ]
 })
 export class RegisterComponent {
@@ -22,6 +28,8 @@ export class RegisterComponent {
     email:    ['', [ Validators.required]],
     password: ['', [ Validators.required]],
   });
+
+  errorPass : boolean = false;
 
   constructor( private fb: FormBuilder,
                private router: Router,
@@ -38,8 +46,12 @@ export class RegisterComponent {
       password: password,
       rol : 'Usuario'
     }
+    if(!this.usuarioService.comprobarPass(usuario.password)){
+      this.errorPass = true;
+      return;
+    }
     this.usuarioService.agregarUsuario(usuario).subscribe( resutl =>{
-      console.log(resutl);
+      this.errorPass = false;
       this.router.navigate(['/login/login']);
     })
   }
