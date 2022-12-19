@@ -42,14 +42,14 @@
       <mat-form-field>
           <mat-label>Contraseña</mat-label>
           <input matInput
-                 type="text"
+                 type="password"
                  [(ngModel)]="usuario.password">
       </mat-form-field>
 
 
       <mat-form-field>
         <mat-label>Rol</mat-label>
-        <mat-select [(ngModel)]="usuario.rol" matInput required>
+        <mat-select [(ngModel)]="usuario.rol" matInput>
           <mat-option *ngFor="let rol of roles"
            [value]="rol.idTipo">{{rol.valor}}
           </mat-option>
@@ -77,6 +77,8 @@
               Borrar
           </button>
       </div>
+      <span *ngIf="errorPass" class="error"> Error La contraseña debe contener una mayuscula, digito y caracter especial</span>
+
   </div>
 
 

@@ -7,7 +7,15 @@ import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-cambiar-password',
-  templateUrl: './cambiar-password.component.html'
+  templateUrl: './cambiar-password.component.html',
+  styles: [
+    `
+    .error{
+      color:red;
+      display:block ;
+    }
+    `
+  ]
 })
 export class CambiarPasswordComponent implements OnInit {
 
@@ -19,7 +27,7 @@ export class CambiarPasswordComponent implements OnInit {
     rol: "",
     password: ""
   }
-
+  errorPass: boolean = false;
   pass1 : string = '';
   pass2 : string= '';
 
@@ -37,11 +45,16 @@ export class CambiarPasswordComponent implements OnInit {
     if( this.pass1.trim().length === 0   || this.pass1.trim().length === 0 ) {
       return;
     }
+    if(this.usuarioService.comprobarPass(this.pass1) === false){
+      this.errorPass = true;
+      return;
+    }
     // Crear
     this.usuario.email != localStorage.getItem('usuarioLogged');
     this.usuario.password = this.pass1;
     this.usuarioService.changePass( this.usuario )
       .subscribe(usuario => {
+        this.errorPass = false;
         this.mostrarSnakbar('Contraseña Cambiada ');
       })
 

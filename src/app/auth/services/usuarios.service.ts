@@ -78,19 +78,15 @@ export class UsuariosService {
   comprobarPass(pwd : string): boolean{
     let valid : boolean = true;
     if(pwd.toLocaleLowerCase() === pwd){
-      console.log("no tiene mayusc");
       return false;
     }
     if(pwd.toUpperCase() === pwd){
-      console.log("no tiene minusc");
       return false;
     }
     if(/\d/.test(pwd) === false){
-      console.log("no tiene digitos");
       return false;
     }
     if(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pwd) === false){
-      console.log("no tiene symbols");
       return false;
     }
 
