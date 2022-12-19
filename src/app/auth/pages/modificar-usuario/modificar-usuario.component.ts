@@ -63,7 +63,8 @@ export class ModificarUsuarioComponent implements OnInit {
 
   modificar(){
 
-    if(!this.usuarioService.comprobarPass(this.usuario.password)){
+    if(this.usuarioService.comprobarPass(this.usuario.password) === false){
+      console.log("MALA PASS")
       this.errorPass = true;
       return;
     }
@@ -86,7 +87,7 @@ export class ModificarUsuarioComponent implements OnInit {
         if( result ) {
           this.usuarioService.borrarUsuario( this.usuario.email! )
             .subscribe( resp => {
-              this.router.navigate(['/usuarios']);
+              this.router.navigate(['/usuarios/listado']);
             });
         }
       }

@@ -46,7 +46,7 @@ export class RegisterComponent {
       password: password,
       rol : 'Usuario'
     }
-    if(!this.usuarioService.comprobarPass(usuario.password)){
+    if(this.usuarioService.comprobarPass(usuario.password) === false){
       this.errorPass = true;
       return;
     }

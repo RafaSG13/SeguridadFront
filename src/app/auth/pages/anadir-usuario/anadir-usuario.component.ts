@@ -51,7 +51,7 @@ export class AnadirUsuarioComponent implements OnInit {
       return;
     }
     // Crear
-    if(!this.usuarioService.comprobarPass(this.usuario.password)){
+    if(this.usuarioService.comprobarPass(this.usuario.password) === false){
       this.errorPass = true;
       return;
     }
@@ -76,7 +76,7 @@ export class AnadirUsuarioComponent implements OnInit {
         if( result ) {
           this.usuarioService.borrarUsuario( this.usuario.email! )
             .subscribe( resp => {
-              this.router.navigate(['/usuarios']);
+              this.router.navigate(['/usuarios/listado']);
             });
         }
 
