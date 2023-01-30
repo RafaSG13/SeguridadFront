@@ -57,7 +57,7 @@ export class LoginComponent  implements OnInit{
         if(this.resultado !== null){
           this.error = false;
           this.usuarioService.usuarioLogged = this.resultado;
-          localStorage.setItem('usuarioLogged',this.resultado.email);
+          window.localStorage.setItem('usuarioLogged',this.resultado.email);
 
           if(this.resultado.rol=="Usuario")
             this.router.navigate(['/entidades/listado']);

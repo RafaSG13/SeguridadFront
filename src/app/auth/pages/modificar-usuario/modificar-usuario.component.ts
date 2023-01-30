@@ -62,15 +62,8 @@ export class ModificarUsuarioComponent implements OnInit {
   }
 
   modificar(){
-
-    if(this.usuarioService.comprobarPass(this.usuario.password) === false){
-      console.log("MALA PASS")
-      this.errorPass = true;
-      return;
-    }
     this.usuarioService.actualizarUsuario( this.usuario )
     .subscribe( () => this.mostrarSnakbar('Registro actualizado'));
-
   }
 
 

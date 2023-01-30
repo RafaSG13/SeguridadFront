@@ -16,31 +16,25 @@ import { UsuariosService } from '../../services/usuarios.service';
     `
   ]
 })
-export class CambiarPasswordComponent implements OnInit {
+export class CambiarPasswordComponent {
 
-  usuario = {
-    email : "",
+  public usuario = {
+    email : localStorage.getItem('usuarioLogged')!,
     dni: "",
     nombre: "",
     apellido: "",
     rol: "",
     password: ""
   }
-  errorPass: boolean = false;
-  pass1 : string = '';
-  pass2 : string= '';
+  public errorPass: boolean = false;
+  public pass1 : string = '';
+  public pass2 : string= '';
 
   constructor(
     private usuarioService : UsuariosService,
     private router:Router,
     private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    if(localStorage.getItem('usuarioLogged') != null)
-      this.usuario.email != localStorage.getItem('usuarioLogged');
-
-  }
 
   cambiar(){
     if( this.pass1.trim().length === 0   || this.pass1.trim().length === 0 ) {
@@ -51,7 +45,6 @@ export class CambiarPasswordComponent implements OnInit {
       return;
     }
     // Crear
-    this.usuario.email != localStorage.getItem('usuarioLogged');
     this.usuario.password = this.pass1;
     this.usuarioService.changePass( this.usuario )
       .subscribe(usuario => {
