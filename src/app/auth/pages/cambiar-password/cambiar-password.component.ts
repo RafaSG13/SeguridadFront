@@ -37,6 +37,8 @@ export class CambiarPasswordComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('usuarioLogged') != null)
+      this.usuario.email != localStorage.getItem('usuarioLogged');
 
   }
 
